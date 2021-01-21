@@ -8,6 +8,8 @@ const is_palindrome_permutation_internal = function isPalindromePermutation(s: S
     If a sequence is a palindrome, a character found on the left hand side must also be on the right hand side,
     hence it appears an even number of times. The only exception is if the string is length 1, 3, 5, etc...
     there is a "middle character" that doesn't have a partner on the opposite side.
+
+    Complexity O(n) where n is length of input string s
     */
 
     const lettersCount = {};
