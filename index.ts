@@ -1,3 +1,3 @@
 import isPalindromePermutation from "./isPalindromePermutation";
 
-export { default } from './isPalindromePermutation'
+export { default as isPalindromePermutation } from './isPalindromePermutation'
