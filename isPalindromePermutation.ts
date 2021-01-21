@@ -1,28 +1,31 @@
-const isPalindromePermutation = function isPalindromePermutation(s: String) : boolean {
+const is_palindrome_permutation_internal = function isPalindromePermutation(s: String) : boolean {
 
-    const letters = {};
+    /*
+    Basically a sequence of characters a-z (assume lower case WLOG) is a palindrome if
+    there is AT MOST one character that appears an odd number of times in the sequence.
+    The other characters present must appear an even number of times.
+    
+    If a sequence is a palindrome, a character found on the left hand side must also be on the right hand side,
+    hence it appears an even number of times. The only exception is if the string is length 1, 3, 5, etc...
+    there is a "middle character" that doesn't have a partner on the opposite side.
+    */
 
-    s.toLowerCase().split('').filter(c => c.match(/[a-z]/))
+    const lettersCount = {};
+
+    s.toLowerCase().split('')
+    .filter(c => c.match(/[a-z]/))
     .forEach(c => {
-        if (letters[c]) {
-            letters[c]++;
-        }
-        else {
-            letters[c] = 1;
-        }
+        if (lettersCount[c]) { lettersCount[c]++; }
+        else { lettersCount[c] = 1; }
     });
 
-    let oneCharFound: boolean = false;
+    let oddCharFound: boolean = false;
 
-    let letters_array = Object.keys(letters).map(k => letters[k]);
+    for (const l in lettersCount) {
 
-    for (let i=0; i < letters_array.length; i++) {
-
-        if ((letters_array[i] % 2) === 1) {
-            if (oneCharFound) {
-                return false;
-            }
-            oneCharFound = true;
+        if ((lettersCount[l] % 2) === 1) {
+            if (oddCharFound) { return false; }
+            oddCharFound = true;
         }
     }
 
@@ -30,4 +33,6 @@ const isPalindromePermutation = function isPalindromePermutation(s: String) : bo
 
 };
 
-export default isPalindromePermutation;
+export default is_palindrome_permutation_internal;
+
+export const isPalindromePermutation = is_palindrome_permutation_internal;
