@@ -25,7 +25,7 @@ const is_palindrome_permutation_internal = function isPalindromePermutation(s: S
 
     for (const l in lettersCount) {
 
-        if ((lettersCount[l] % 2) === 1) {
+        if (lettersCount[l] % 2) {
             if (oddCharFound) { return false; }
             oddCharFound = true;
         }
